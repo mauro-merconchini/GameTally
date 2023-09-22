@@ -9,6 +9,8 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     // Eloquent relationship
     public function category()
     {

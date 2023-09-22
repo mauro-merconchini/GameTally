@@ -32,4 +32,6 @@ Route::middleware([
             'games' => auth()->user()->games()->with(['category', 'status'])->get()
         ]);
     })->name('dashboard');
+
+    Route::resource('games', \App\Http\Controllers\GameController::class)->except(['index', 'show']);
 });
