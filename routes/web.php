@@ -27,6 +27,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard', 
+        [
+            'games' => auth()->user()->games()->with(['category', 'status'])->get()
+        ]);
     })->name('dashboard');
 });
