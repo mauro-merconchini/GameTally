@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Game;
 use App\Models\Status;
+use App\Services\SteamGridService;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -15,6 +16,13 @@ class GameController extends Controller
     public function create()
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $searchResults = SteamGridService::getAutoCompleteResults($request->input('gameSearchTerm'));
+
+        return view('games-search-result', ["gameArray" => $searchResults]);
     }
 
     /**

@@ -15,5 +15,17 @@
         </div>
         
         <a href="{{route('games.edit', ['game' => $game->id])}}">EDIT</a>
+
+       
+
+        <form method="POST" action="{{ route('games.destroy', $game->id) }}">
+            @csrf
+            @method('DELETE')
+        
+            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                Delete
+            </button>
+        </form>
+        
     </div>
 </div>
