@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Game;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -37,7 +38,13 @@ class GameController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // return a view with the game that has all the data for that game
+        return view('edit-game', 
+        [
+            "game" => auth()->user()->games()->with(['category', 'status'])->findOrFail($id),
+            "categories" => Category::all(),
+            "statuses" => Status::all(),
+        ]);
     }
 
     /**
@@ -45,7 +52,9 @@ class GameController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        auth()->user()->games()->findOrFail($id)->update(['status_id' => $request->input('status_id')]);
+
+        return back();
     }
 
     /**

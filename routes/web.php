@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('backlog', 
-    [
-        'games' => Game::with(['category', 'status'])->get(),
-    ]);
+
+    // dd(auth()->user());
+
+    if(auth()->check())
+    {
+        return redirect(route('dashboard'));
+    }
+
+    return view('welcome');
 });
 
 Route::middleware([

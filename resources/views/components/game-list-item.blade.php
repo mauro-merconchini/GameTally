@@ -1,4 +1,4 @@
-@props(["game"])
+@props(["game", "statuses"])
 
 <div class="border border-gray-300 rounded-md px-2 py-4 shadow-sm bg-white mb-4">
     <div class="grid grid-cols-12 gap-3">
@@ -13,13 +13,7 @@
                 <p class="text-gray-600 text-sm">{{ $game->status->name }}</p>
             </div>
         </div>
-        <div class="col-span-5 flex gap-3">
-            <form action="{{ route('games.destroy', $game) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
-            </form>
-        </div>
+        
+        <a href="{{route('games.edit', ['game' => $game->id])}}">EDIT</a>
     </div>
 </div>
