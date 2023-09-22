@@ -41,7 +41,7 @@ class GameController extends Controller
         // return a view with the game that has all the data for that game
         return view('edit-game', 
         [
-            "game" => auth()->user()->games()->with(['category', 'status'])->findOrFail($id),
+            "game" => auth()->user()->games()->findOrFail($id),
             "categories" => Category::all(),
             "statuses" => Status::all(),
         ]);
@@ -52,9 +52,10 @@ class GameController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        auth()->user()->games()->findOrFail($id)->update(['status_id' => $request->input('status_id')]);
+        auth()->user()->games()->findOrFail($id)
+        ->update($request->only(['name', 'category_id', 'status_id']));
 
-        return back();
+        return redirect(route('dashboard'));
     }
 
     /**
