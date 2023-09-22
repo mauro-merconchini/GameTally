@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('backlog', 
     [
-        'gamesList' => Game::with(['category', 'status'])->get(),
+        'games' => Game::with(['category', 'status'])->get(),
     ]);
 });
