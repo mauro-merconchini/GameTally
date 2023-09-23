@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string("name");
-            $table->bigInteger("steamGrid_id");
+            $table->bigInteger("steamgrid_id");
             $table->foreignId("status_id");
             $table->foreignId("category_id");
             $table->text("icon_url");

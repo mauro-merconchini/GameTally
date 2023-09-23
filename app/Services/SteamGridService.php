@@ -43,10 +43,10 @@ class SteamGridService
         return $icon;
     }
 
-    public static function getAllIcons(int $steamGrid_id)
+    public static function getAllIcons(int $steamgrid_id): array
     {
-        $result = self::request()->get("icons/game/{$steamGrid_id}");
+        $result = self::request()->get("icons/game/{$steamgrid_id}");
 
-        return collect($result->json('data'))->pluck('thumb');
+        return collect($result->json('data'))->pluck('thumb')->toArray();
     }
 }

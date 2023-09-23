@@ -24,7 +24,7 @@ class GameFactory extends Factory
         return 
         [
             "name" => $this->faker->words(3, true),
-            "steamGrid_id" => $this->faker->randomNumber(4),
+            "steamgrid_id" => $this->faker->randomNumber(4),
             "icon_url" => "ico",
             "status_id" => $statusIds->random(),
             "category_id" => $categoryIds->random(),

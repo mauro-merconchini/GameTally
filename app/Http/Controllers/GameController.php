@@ -48,7 +48,7 @@ class GameController extends Controller
 
         auth()->user()->games()->create([
             'name' => $request->input('name'),
-            'steamGrid_id' => $request->input('game_id'),
+            'steamgrid_id' => $request->input('game_id'),
             'category_id' => $defaultCategory->id,
             'status_id' => $defaultStatus->id,
             'icon_url' => $iconUrl,
@@ -71,7 +71,7 @@ class GameController extends Controller
             "game" => $game,
             "categories" => Category::all(),
             "statuses" => Status::all(),
-            "icons" => SteamGridService::getAllIcons($game->steamGrid_id)
+            "icons" => SteamGridService::getAllIcons($game->steamgrid_id)
         ]);
     }
 
