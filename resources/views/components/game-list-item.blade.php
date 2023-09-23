@@ -1,9 +1,9 @@
 @props(["game", "statuses"])
 
 <div class="border border-gray-300 rounded-md px-2 py-4 shadow-sm bg-white mb-4">
-    <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-1 flex items-center">
-            <img src="https://cdn2.steamgriddb.com/file/sgdb-cdn/icon/f6e25176c96f7d7c8c7d74ff8babee5d/32/256x256.png"
+    <div class="grid grid-cols-12 gap-5">
+        <div class="col-span-1 flex mr-3 items-center">
+            <img src="{{ $game->icon_url }}"
                 alt="{{ $game->name }}" class="w-full h-auto">
         </div>
         <div class="col-span-6 flex items-center">

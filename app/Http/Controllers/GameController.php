@@ -30,15 +30,31 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        // $defaultStatus = Status::where('name', 'Not Played')->first();
+        // auth()->user()->games()->create([
+        //     'name' => $request->input('name'),
+        //     'category_id' => $request->input('category_id'),
+        //     'status_id' => $defaultStatus->id,
+        //     'icon_url' => 'https://via.placeholder.com/150',
+        // ]);
+
+        // return back();
+
+        // dd($request);
+
+        $iconUrl = SteamGridService::getGameIcon($request->input('game_id'));
         $defaultStatus = Status::where('name', 'Not Played')->first();
+        $defaultCategory = Category::where('name', 'Medium')->first();
+
         auth()->user()->games()->create([
             'name' => $request->input('name'),
-            'category_id' => $request->input('category_id'),
+            'steamGrid_id' => $request->input('game_id'),
+            'category_id' => $defaultCategory->id,
             'status_id' => $defaultStatus->id,
-            'icon_url' => 'https://via.placeholder.com/150',
+            'icon_url' => $iconUrl,
         ]);
 
-        return back();
+        return redirect(route('dashboard'));
     }
 
     /**
@@ -46,12 +62,16 @@ class GameController extends Controller
      */
     public function edit(string $id)
     {
+
+        $game = auth()->user()->games()->findOrFail($id);
+
         // return a view with the game that has all the data for that game
         return view('edit-game', 
         [
-            "game" => auth()->user()->games()->findOrFail($id),
+            "game" => $game,
             "categories" => Category::all(),
             "statuses" => Status::all(),
+            "icons" => SteamGridService::getAllIcons($game->steamGrid_id)
         ]);
     }
 
@@ -61,7 +81,7 @@ class GameController extends Controller
     public function update(Request $request, string $id)
     {
         auth()->user()->games()->findOrFail($id)
-        ->update($request->only(['name', 'category_id', 'status_id']));
+        ->update($request->only(['name', 'category_id', 'status_id', 'icon_url']));
 
         return redirect(route('dashboard'));
     }
@@ -73,6 +93,6 @@ class GameController extends Controller
     {
         auth()->user()->games()->findOrFail($id)->delete();
 
-        return back();
+        return redirect(route('dashboard'));
     }
 }

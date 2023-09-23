@@ -17,10 +17,23 @@
             <div>
                 <label for="">Category: Current: {{$game->category->name}}</label>
                 <select name="category_id" id="">
-                    @foreach ($categories as $c)
-                        <option value="{{$c->id}}" @if($c->id == $game->category_id) selected @endif>{{$c->name}}</option>
+                    @foreach ($categories as $category)
+                        <option value="{{$category->id}}" @if($category->id == $game->category_id) selected @endif>{{$category->name}}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="p-4">
+                <label for="selected-icons" class="block text-gray-700 font-bold mb-2">Select Icon:</label>
+                    <div id="selected-icons" class="flex space-x-4">
+                        @foreach ($icons as $icon)
+                        <div class="icon-option cursor-pointer">
+                            <input type="radio" name="icon_url" value="{{ $icon }}" @if($icon == $game->icon_url) checked @endif>
+                            <img src="{{ $icon }}" alt="Game Icon">
+                        </div>
+                        @endforeach
+                    </div>
+                </label>
             </div>
     
             @csrf
