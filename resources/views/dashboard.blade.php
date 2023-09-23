@@ -8,9 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-4">
-                @include('components.forms.game-form')
+                @livewire('create-game-form')
             </div>
-            <x-game-list :games="$games" />
+            @livewire('game-list')
         </div>
     </div>
 </x-app-layout>
