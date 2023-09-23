@@ -14,9 +14,7 @@
             </div>
         </div>
         
-        <a href="{{route('games.edit', ['game' => $game->id])}}">EDIT</a>
-
-       
+        <a wire:navigate href="{{route('games.edit', ['game' => $game->id])}}">EDIT</a>
 
         <form method="POST" action="{{ route('games.destroy', $game->id) }}">
             @csrf

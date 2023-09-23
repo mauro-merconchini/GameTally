@@ -14,7 +14,11 @@ class EditGameForm extends Component
     public $categories;
     public $statuses;
     public $icons;
+    
     public $selectedIcon;
+    public $category;
+    public $status;
+    public $name;
 
     public function mount(Game $game)
     {
@@ -23,10 +27,25 @@ class EditGameForm extends Component
         $this->statuses = Status::all();
         $this->icons = SteamGridService::getAllIcons($game->steamgrid_id);
         $this->selectedIcon = $game->icon_url;
+        $this->name = $game->name;
+        $this->category = $game->category_id;
+        $this->status = $game->status_id;
     }
 
     public function selectIcon(string $url)
     {
         $this->selectedIcon = $url;
+    }
+
+    public function updateGame()
+    {
+        $this->game->update([
+            "name" => $this->name,
+            "category_id" => $this->category,
+            "status_id" => $this->status,
+            "icon_url" => $this->selectedIcon,
+        ]);
+
+        return redirect(route('dashboard'));
     }
 }

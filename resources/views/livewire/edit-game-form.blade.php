@@ -1,13 +1,13 @@
 <div>
     <div class="max-w-7xl mx-auto bg-white px-2 py-4 rounded-md mt-12">
-        <form action="{{ route('games.update', $game) }}" method="POST">
+        <form wire:submit="updateGame">
             <div class="mb-4">
                 <label for="">Game title</label>
-                <input type="text" name="name" class="block w-full rounded-md" value="{{$game->name}}" id="">
+                <input type="text" wire:model="name" class="block w-full rounded-md">
             </div>
             <div>
                 <label for="">Status</label>
-                <select name="status_id" id="">
+                <select wire:model="status">
                     @foreach ($statuses as $staus)
                     <option value="{{$staus->id}}" @if($staus->id == $game->status_id) selected @endif>{{$staus->name}}
                     </option>
@@ -16,7 +16,7 @@
             </div>
             <div>
                 <label for="">Category: Current: {{$game->category->name}}</label>
-                <select name="category_id" id="">
+                <select wire:model="category">
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}" @if($category->id == $game->category_id) selected
                         @endif>{{$category->name}}</option>
@@ -41,8 +41,6 @@
                 </label>
             </div>
     
-            @csrf
-            @method('PUT')
             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Update</button>
         </form>
     </div>
