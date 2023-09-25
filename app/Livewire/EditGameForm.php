@@ -46,6 +46,6 @@ class EditGameForm extends Component
             "icon_url" => $this->selectedIcon,
         ]);
 
-        return redirect(route('dashboard'));
+        $this->dispatch('gameUpdated', $this->game->id);
     }
 }

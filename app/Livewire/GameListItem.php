@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class GameListItem extends Component
 {
@@ -20,5 +21,14 @@ class GameListItem extends Component
         $this->game = null;
 
         $this->dispatch('gameDeleted');
+    }
+
+    #[On('gameUpdated')]
+    public function updateGame(int $gameId)
+    {
+        if ($this->game->id == $gameId)
+        {
+            $this->game->refresh();
+        }
     }
 }

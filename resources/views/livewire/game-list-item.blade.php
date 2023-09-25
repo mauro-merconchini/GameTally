@@ -19,8 +19,9 @@
                     Delete
                 </button>
             </form>
-        
         </div>
+
+        <livewire:edit-game-form :game="$game"/>
         
     @endif
 </div>
