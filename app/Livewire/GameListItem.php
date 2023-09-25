@@ -19,9 +19,6 @@ class GameListItem extends Component
         $item->delete();
         $this->game = null;
 
-        return redirect(route('dashboard')); 
-        // TAKE OUT THIS REDIRECT AND TURN IT INTO AND EVENT AND A LISTENER
-
-        
+        $this->dispatch('gameDeleted');
     }
 }

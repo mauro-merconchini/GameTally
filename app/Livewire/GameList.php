@@ -9,32 +9,29 @@ use Livewire\Attributes\On;
 
 class GameList extends Component
 {
-    public $games = [];
     public $statuses = [];
 
-    const PLAYED_STATUS = 1;
-    const IN_PROGRESS_STATUS = 2;
-    const UNPLAYED_STATUS = 3;
+    protected function loadGames()
+    {
+        $this->statuses = Status::with(['games' => function ($q) {
+            return $q->where('user_id', auth()->user()->id);
+        }])->get();
+    }
 
     public function mount()
     {
-        // $this->games = auth()->user()->games;
-        $this->games = self::sortByStatus(auth()->user()->games);
-        $this->statuses = Status::all();
+        $this->loadGames();
     }
 
     #[On('gameAdded')]
-    public function gameAdded()
+    public function reloadGames()
     {
-        $this->games = auth()->user()->games;
+        $this->loadGames();
     }
 
-    private function sortByStatus($games): Collection
+    #[On('gameDeleted')]
+    public function reloadGamesAgain()
     {
-        $unplayed = $games->where('status_id', self::UNPLAYED_STATUS);
-        $played = $games->where('status_id', self::PLAYED_STATUS);
-        $inProgress = $games->where('status_id', self::IN_PROGRESS_STATUS);
-
-        return $inProgress->concat($unplayed)->concat($played);
+        $this->loadGames();
     }
 }
