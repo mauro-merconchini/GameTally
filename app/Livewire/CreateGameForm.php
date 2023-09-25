@@ -70,6 +70,7 @@ class CreateGameForm extends Component
 
         $this->dispatch('gameAdded');
         $this->resetAll();
+        // return redirect(route('dashboard'));
     }
 
     protected function resetAll()

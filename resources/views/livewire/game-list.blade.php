@@ -1,7 +1,7 @@
 <div>
     <div>
         @foreach ($games as $game)
-            <x-game-list-item :game="$game" :statuses="$statuses" />
+            <livewire:game-list-item :game="$game" :key="$game->id"/>
         @endforeach
     </div>
 </div>
