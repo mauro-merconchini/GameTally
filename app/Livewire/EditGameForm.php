@@ -13,7 +13,7 @@ class EditGameForm extends Component
     public $game;
     public $categories;
     public $statuses;
-    public $icons;
+    public $icons = null;
     
     public $selectedIcon;
     public $category;
@@ -25,11 +25,15 @@ class EditGameForm extends Component
         $this->game = $game;
         $this->categories = Category::all();
         $this->statuses = Status::all();
-        $this->icons = SteamGridService::getAllIcons($game->steamgrid_id);
         $this->selectedIcon = $game->icon_url;
         $this->name = $game->name;
         $this->category = $game->category_id;
         $this->status = $game->status_id;
+    }
+
+    public function loadIcons()
+    {
+        $this->icons = SteamGridService::getAllIcons($this->game->steamgrid_id);
     }
 
     public function selectIcon(string $url)

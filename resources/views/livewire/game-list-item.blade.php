@@ -1,4 +1,4 @@
-<div class="border border-gray-300 rounded-md px-2 py-4 shadow-sm bg-white mb-4">
+<div x-data="{showEdit: false}" x-on:click.away="showEdit = false" class="border border-gray-300 rounded-md px-2 py-4 shadow-sm bg-white mb-4">
     @if (!empty($game))
         <div class="grid grid-cols-12 gap-5">
             <div class="col-span-1 flex mr-3 items-center">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         
-            <a wire:navigate href="{{route('games.edit', ['game' => $game->id])}}">EDIT</a>
+            <x-button class="col-span-1" x-on:click="showEdit = !showEdit">Edit</x-button>
         
             <form wire:submit="deleteGame">
                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
@@ -21,7 +21,9 @@
             </form>
         </div>
 
-        <livewire:edit-game-form :game="$game"/>
+        <div x-show="showEdit">
+            <livewire:edit-game-form :game="$game" />
+        </div>
         
     @endif
 </div>

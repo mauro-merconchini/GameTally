@@ -23,23 +23,23 @@
                     @endforeach
                 </select>
             </div>
-    
-            <div class="p-4">
-                <label for="selected-icons" class="block text-gray-700 font-bold mb-2">Select Icon:</label>
-                <div id="selected-icons" class="grid gap-3 grid-cols-12">
-                    @foreach ($icons as $icon)
-                    <div 
-                        wire:click="selectIcon('{{ $icon }}')"
-                        class="icon-option cursor-pointer col-span-2 
-                                flex items-center border border-gray-300 
-                                rounded-md
-                        @if($icon == $selectedIcon) border-indigo-600 border-4 shadow-lg @endif">
-                        <img src="{{ $icon }}" alt="Game Icon" class="w-full h-auto">
+            <x-button wire:click="loadIcons">Change icon</x-button>
+            @if (!empty($icons))
+                <div class="p-4">
+                    <label for="selected-icons" class="block text-gray-700 font-bold mb-2">Select Icon:</label>
+                    <div id="selected-icons" class="grid gap-3 grid-cols-12">
+                        @foreach ($icons as $icon)
+                        <div wire:click="selectIcon('{{ $icon }}')" class="icon-option cursor-pointer col-span-2 
+                                                flex items-center border border-gray-300 
+                                                rounded-md
+                                        @if($icon == $selectedIcon) border-indigo-600 border-4 shadow-lg @endif">
+                            <img src="{{ $icon }}" alt="Game Icon" class="w-full h-auto">
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    </label>
                 </div>
-                </label>
-            </div>
+            @endif
     
             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Update</button>
         </form>

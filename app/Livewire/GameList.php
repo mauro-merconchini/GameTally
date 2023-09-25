@@ -29,8 +29,14 @@ class GameList extends Component
         $this->loadGames();
     }
 
-    #[On('gameDeleted')]
+    #[On('gameUpdated')]
     public function reloadGamesAgain()
+    {
+        $this->loadGames();
+    }
+
+    #[On('gameDeleted')]
+    public function reloadGamesAgainAgain()
     {
         $this->loadGames();
     }
