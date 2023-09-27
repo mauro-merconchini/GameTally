@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GameController;
 use App\Models\Game;
+use App\Models\User;
 use App\Services\SteamGridService;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,10 @@ Route::get('/', function () {
     }
 
     return view('welcome');
+});
+
+Route::get("/api/{user_id}", function($user_id) {
+    return User::find($user_id)->games;
 });
 
 Route::middleware([

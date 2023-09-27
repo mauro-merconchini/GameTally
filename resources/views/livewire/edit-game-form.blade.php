@@ -3,14 +3,14 @@
 		<div class="my-4 border-t border-gray-300"></div>
 		<div class="max-w-7xl mx-auto bg-white px-2">
 			<form wire:submit="updateGame">
-				<div class="grid grid-cols-12 gap-5">
+				<div class="grid grid-cols-12 lg:gap-5 gap-1">
 					<div class="col-span-9">
-						<label class="font-bold text-lg">Title</label>
-						<input type="text" wire:model="name" class="block w-full rounded-2xl">
+						<label class="font-bold lg:text-lg text-sm">Title</label>
+						<input type="text" wire:model="name" class="block w-full rounded-2xl lg:text-base text-sm">
 					</div>
 					<div class="col-span-3">
-						<label class="font-bold text-lg">Category:</label>
-						<select wire:model="category" class="block rounded-2xl">
+						<label class="font-bold lg:text-lg text-sm">Category:</label>
+						<select wire:model="category" class="block rounded-2xl lg:text-base text-sm">
 							@foreach ($categories as $category)
 								<option value="{{$category->id}}" @if($category->id == $game->category_id) selected
 								@endif>{{$category->name}}</option>
@@ -22,7 +22,7 @@
 				<div class="grid grid-cols-12 gap-5 mt-5">
 					@foreach ($statuses as $s)
 							<div wire:click="selectStatus({{$s->id}})" class="col-span-4 border-2 text-center py-2 cursor-pointer rounded-2xl @if($s->id == $status) border-indigo-600 @else border-gray-400 @endif">
-								<p class="text-lg">{{$s->name}}</p>
+								<p class="lg:text-lg text-sm">{{$s->name}}</p>
 							</div>
 					@endforeach
 				</div>
@@ -49,10 +49,10 @@
 
 				@if (!empty($icons))
 					<div class="p-4">
-						<label for="selected-icons" class="block text-gray-700 font-bold mb-2">Select Icon:</label>
+						<label for="selected-icons" class="block text-gray-700 lg:text-base text-sm font-bold mb-2">Select Icon:</label>
 						<div id="selected-icons" class="grid gap-3 grid-cols-12">
 							@foreach ($icons as $icon)
-								<div wire:click="selectIcon('{{ $icon }}')" class="icon-option cursor-pointer col-span-2 
+								<div wire:click="selectIcon('{{ $icon }}')" class="icon-option cursor-pointer lg:col-span-2 col-span-3
 														flex items-center border border-gray-300 
 														rounded-md
 												@if($icon == $selectedIcon) border-indigo-600 border-4 shadow-lg @endif">

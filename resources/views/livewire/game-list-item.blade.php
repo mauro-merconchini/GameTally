@@ -1,7 +1,7 @@
 <div x-data="{showEdit: false}" x-on:click.away="showEdit = false" class="game-list-item border border-gray-300 rounded-md px-2 py-4 shadow-sm bg-white mb-4">
     @if (!empty($game))
         <div x-on:click="showEdit = !showEdit" class="grid grid-cols-12 gap-5 cursor-pointer">
-            <div class="col-span-1 flex mr-3 items-center">
+            <div class="lg:col-span-1 col-span-2 flex lg:mr-3 items-center">
                 <img src="{{ $game->icon_url }}" alt="{{ $game->name }}" class="w-full h-auto">
             </div>
             <div class="col-span-6 flex items-center">
