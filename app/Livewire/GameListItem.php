@@ -13,16 +13,6 @@ class GameListItem extends Component
         $this->game = $game;
     }
 
-    public function deleteGame()
-    {
-        $item = $this->game;
-
-        $item->delete();
-        $this->game = null;
-
-        $this->dispatch('gameDeleted');
-    }
-
     #[On('gameUpdated')]
     public function updateGame(int $gameId)
     {

@@ -41,6 +41,11 @@ class EditGameForm extends Component
         $this->selectedIcon = $url;
     }
 
+    public function selectStatus(int $status_id)
+    {
+        $this->status = $status_id;
+    }
+
     public function updateGame()
     {
         $this->game->update([
@@ -51,5 +56,15 @@ class EditGameForm extends Component
         ]);
 
         $this->dispatch('gameUpdated', $this->game->id);
+    }
+
+    public function deleteGame()
+    {
+        $item = $this->game;
+
+        $item->delete();
+        $this->game = null;
+
+        $this->dispatch('gameDeleted');
     }
 }
