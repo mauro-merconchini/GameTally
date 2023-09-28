@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-    // dd(auth()->user());
-
     if(auth()->check())
     {
         return redirect(route('dashboard'));
@@ -39,10 +36,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-
-
-        SteamGridService::getAutoCompleteResults("skyrim");
-
         return view('dashboard', 
         [
             'games' => auth()->user()->games()->with(['category', 'status'])->get()

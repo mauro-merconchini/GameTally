@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Status;
 use App\Models\Game;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
+       User::factory()->create([
             'name' => 'Test Boy',
             'email' => 'test@test.com',
             'password' => bcrypt('password'),

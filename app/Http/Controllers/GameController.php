@@ -30,18 +30,6 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        // $defaultStatus = Status::where('name', 'Not Played')->first();
-        // auth()->user()->games()->create([
-        //     'name' => $request->input('name'),
-        //     'category_id' => $request->input('category_id'),
-        //     'status_id' => $defaultStatus->id,
-        //     'icon_url' => 'https://via.placeholder.com/150',
-        // ]);
-
-        // return back();
-
-        // dd($request);
-
         $iconUrl = SteamGridService::getGameIcon($request->input('game_id'));
         $defaultStatus = Status::where('name', 'Not Played')->first();
         $defaultCategory = Category::where('name', 'Medium')->first();
