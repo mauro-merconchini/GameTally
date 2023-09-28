@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       User::factory()->create([
-            'name' => 'Test Boy',
-            'email' => 'test@test.com',
-            'password' => bcrypt('password'),
-        ]);
+    //    User::factory()->create([
+    //         'name' => 'Test Boy',
+    //         'email' => 'test@test.com',
+    //         'password' => bcrypt('password'),
+    //     ]);
 
         Category::factory()->create(["name" => "Long"]);
         Category::factory()->create(["name" => "Medium"]);
@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
         Status::factory()->create(["name" => "In Progress"]);
         Status::factory()->create(["name" => "Not Played"]);
 
-        Game::factory(25)->create();
+        // Game::factory(25)->create();
     }
 }
