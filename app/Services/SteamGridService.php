@@ -8,7 +8,7 @@ class SteamGridService
     protected static function request()
     {
         $baseUrl = 'https://www.steamgriddb.com/api/v2/';
-        return Http::withToken('24dcf4ee16a28dcf66bf9a32a02fd802')->baseUrl($baseUrl);
+        return Http::withToken(env('STEAM_GRID_DB_TOKEN', 'forge'))->baseUrl($baseUrl);
     }
 
     public static function getAutoCompleteResults(string $gameName): array
