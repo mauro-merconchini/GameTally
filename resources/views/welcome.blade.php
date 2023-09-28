@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>GameTally</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -29,7 +29,7 @@
                                 alt="">
                         </a>
                     </div> --}}
-                    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <div class="flex flex-1 justify-end">
                         <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
                                 aria-hidden="true">&rarr;</span></a>
                     </div>
@@ -52,10 +52,10 @@
                                 <p class="mt-6 text-lg lg:leading-8 leading-6 text-gray-600">Don't let all those fantastic games in your collection gather dust.
                                     Add them to your backlog list and challenge yourself to get through them all!</p>
                                 <div class="mt-10 flex items-center justify-center gap-x-6">
-                                    <a href="#"
+                                    <a href="/register"
                                         class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
                                         started</a>
-                                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
+                                    <a href="#feature" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
                                             aria-hidden="true">→</span></a>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                 </div>
 
                 <!-- Feature section 1 -->
-                <div class="lg:grid lg:grid-cols-12 place-items-center lg:bg-slate-50">
+                <div id="feature" class="lg:grid lg:grid-cols-12 place-items-center lg:bg-slate-50">
                     <div class="lg:col-span-6 text-center">
                         <p class="lg:text-3xl text-2xl font-bold tracking-tight text-gray-900">Add any game</p>
                         <p class="lg:text-lg text-xs mx-4 mb-4 leading-5 text-gray-600">Search for any game you want to add to your backlog list. 
