@@ -9,7 +9,7 @@
 						<input type="text" wire:model="name" class="block w-full rounded-2xl lg:text-base text-sm">
 					</div>
 					<div class="col-span-3">
-						<label class="font-bold lg:text-lg text-sm">Category:</label>
+						<label class="font-bold lg:text-lg text-sm">Length:</label>
 						<select wire:model="category" class="block rounded-2xl lg:text-base text-sm">
 							@foreach ($categories as $category)
 								<option value="{{$category->id}}" @if($category->id == $game->category_id) selected
