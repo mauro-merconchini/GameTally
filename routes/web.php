@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GameController;
 use App\Models\Game;
+use App\Models\User;
 use App\Services\SteamGridService;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-    // dd(auth()->user());
-
     if(auth()->check())
     {
         return redirect(route('dashboard'));
@@ -28,16 +26,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/api/{user_id}", function($user_id) {
+    return User::find($user_id)->games;
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-
-
-        SteamGridService::getAutoCompleteResults("skyrim");
-
         return view('dashboard', 
         [
             'games' => auth()->user()->games()->with(['category', 'status'])->get()
