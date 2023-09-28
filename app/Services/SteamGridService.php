@@ -24,7 +24,7 @@ class SteamGridService
         $result = self::request()->get("icons/game/{$gameId}");      
         
         //2. get the custom PNGs for the icons
-        $icon = collect($result->json('data'))->where('style', 'custom')->where('mime', 'image/png')->pluck('thumb')->first();
+        $icon = collect($result->json('data'))->where('style', 'official')->where('mime', 'image/png')->pluck('thumb')->first();
 
         //3. if custom is null, check again for official
         if (blank($icon))
