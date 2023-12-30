@@ -30,21 +30,34 @@
     @if (!blank($selectedGame))
         <div class="w-full rounded-md bg-white px-2 py-4">
             <form wire:submit="addGame">
-                <div class="mb-4">
-                    <label for="" class="mb-2">Game name</label>
-                    <input type="text" disabled value="{{$selectedGame['name']}}"
-                        class="block border border-gray-400 rounded-md w-full">
+                {{-- <div class="mb-4">
+                    <label for="" class="font-bold lg:text-lg text-sm">Game Title</label>
+                    <input type="text" value="{{$selectedGame['name']}}"
+                        class="block border border-gray-400 rounded-lg w-full">
+                </div> --}}
+
+                <h2 class="lg:text-xl font-semibold mb-2 ml-2">{{ $selectedGame['name'] }}</h2>
+                <div class="grid grid-cols-12 mb-4 ml-2">
+                    <div class="col-span-4 mr-2">
+                        <label class="font-bold lg:text-lg text-sm pr-1">Game Length: </label>
+                        <select class="rounded-lg" name="category_id" wire:model="category">
+                            @foreach ($categories as $c)
+                            <option value="{{$c->id}}">{{$c->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="font-bold lg:text-lg text-sm pr-1">Status: </label>
+                        <select class="rounded-lg" name="category_id" wire:model="status">
+                            @foreach ($statuses as $s)
+                            <option value="{{$s->id}}">{{$s->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="">Game length</label>
-                    <select name="category_id" wire:model="category">
-                        @foreach ($categories as $c)
-                        <option value="{{$c->id}}">{{$c->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                
         
-                <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 ml-2 rounded">
                     Add game
                 </button>
             </form>

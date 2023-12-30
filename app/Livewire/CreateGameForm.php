@@ -18,15 +18,22 @@ class CreateGameForm extends Component
 
     public $categories;
 
+    public $statuses;
+
     /**
      * Variables we need from game form
      */
     public $category;
 
+    public $status;
+
     public function mount()
     {
         $this->categories = Category::all();
         $this->category = $this->categories->first()->id;
+
+        $this->statuses = Status::all();
+        $this->status = $this->statuses->last()->id;
     }
 
     public function updatedSearch()
@@ -64,7 +71,7 @@ class CreateGameForm extends Component
             'name' => $this->selectedGame['name'],
             'steamgrid_id' => $this->selectedGame['steamgrid_id'],
             'category_id' => $this->category,
-            'status_id' => $defaultStatus->id,
+            'status_id' => $this->status,
             'icon_url' => $this->selectedGame['icon_url'],
         ]);
 
